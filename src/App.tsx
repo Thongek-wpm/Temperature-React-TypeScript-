@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import React, { FormEvent } from 'react';
 import './App.css';
 
 function App() {
+  console.log("Render");
+  //let FahreheitValue = 0;
+  const [FahreheitValue,setFahreheitValue] = React.useState(0);
+  let Celsius = 0;
+  function myFunction(event: FormEvent<HTMLInputElement>){
+    event.currentTarget.valueAsNumber;
+    console.log("Celsius",Celsius);
+  }
+  function myClickFunction(){
+    setFahreheitValue(Celsius*(9/5)+32);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h3>Temperature Calcuator</h3>
+      <div>
+        Celsius: <input onInput={myFunction} type="Number" />
+      </div>
+      <div>Fahreheit: {FahreheitValue}</div>
+      <button onClick={myClickFunction}> Convert</button>
     </div>
   );
 }
